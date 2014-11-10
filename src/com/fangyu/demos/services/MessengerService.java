@@ -8,6 +8,7 @@ import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
 import android.os.Process;
+import android.os.RemoteException;
 import android.util.Log;
 
 /**
@@ -17,17 +18,30 @@ import android.util.Log;
  */
 public class MessengerService extends Service {
 	private Messenger messenger = new Messenger(new InHandler());
+	private Messenger clientMessenger;
+	private int pid;
 
 	class InHandler extends Handler {
 		@Override
 		public void handleMessage(Message msg) {
-			servicePrint();
+			if (msg.what == 1) {
+				servicePrint();
+				if (clientMessenger == null) {
+					clientMessenger = msg.replyTo;
+					try {
+						clientMessenger.send(new Message());
+					} catch (RemoteException e) {
+						e.printStackTrace();
+					}
+				}
+			} 
 		}
 	}
 
 	@Override
 	public void onCreate() {
-		Log.e("View", "Service****" + getPackageName() + " pid: " + Process.myPid());
+		pid = Process.myPid();
+		Log.e("View", "Service****" + getPackageName() + " pid: " + pid);
 	}
 
 	@Override
@@ -57,6 +71,6 @@ public class MessengerService extends Service {
 	}
 
 	public void servicePrint() {
-		Log.e("View", "this is from service");
+		Log.e("View", "this is from service " + pid);
 	}
 }

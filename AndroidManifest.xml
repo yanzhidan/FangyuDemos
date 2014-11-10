@@ -47,8 +47,16 @@
             </intent-filter>
         </activity>
 
-        <service android:name="com.fangyu.demos.services.RemoteService" />
-        <service android:name="com.fangyu.demos.services.MessengerService" />
+        <service
+            android:name="com.fangyu.demos.services.RemoteService"
+            android:process=":remote" />
+        <service
+            android:name="com.fangyu.demos.services.MessengerService"
+            android:process=":messenger" >
+            <intent-filter>
+                <action android:name="com.fangyu.demos.services.MessengerService" />
+            </intent-filter>
+        </service>
 
         <receiver android:name="com.fangyu.demos.MyReceiver" >
             <intent-filter>

@@ -26,6 +26,7 @@ import com.fangyu.demos.R;
 public class MessengerClient extends Activity {
 	Messenger messenger;
 	Messenger acMessenger = new Messenger(new OutHandler());
+	private int pid;
 
 	class OutHandler extends Handler {
 		@Override
@@ -56,7 +57,8 @@ public class MessengerClient extends Activity {
 		button.setText("messengerSend");
 		Intent intent = new Intent(this, MessengerService.class);
 		bindService(intent, serviceConnection, BIND_AUTO_CREATE);
-		Log.e("View", "Activity****" + getPackageName() + " pid: " + Process.myPid());
+		pid = Process.myPid();
+		Log.e("View", "Activity****" + getPackageName() + " pid: " + pid);
 	}
 
 	public void remoteAction(View view) {
@@ -71,13 +73,13 @@ public class MessengerClient extends Activity {
 	}
 
 	private void clientPrint() {
-		Log.e("View", "this is from client");
+		Log.e("View", findViewById(R.id.button) + " this is from client " + pid);
 	}
 
 	@Override
 	protected void onDestroy() {
-		// TODO Auto-generated method stub
 		super.onDestroy();
+		Log.e("View", "clientDestroy" + pid);
 		unbindService(serviceConnection);
 	}
 }

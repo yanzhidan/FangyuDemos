@@ -15,6 +15,7 @@ import com.fangyu.demos.R;
 
 public class RemoteClient extends Activity {
 	IRemoteService remoteService;
+	boolean clicked = false;
 
 	ServiceConnection serviceConnection = new ServiceConnection() {
 
@@ -42,7 +43,13 @@ public class RemoteClient extends Activity {
 
 	public void remoteAction(View view) {
 		try {
-			remoteService.remoteAction();
+			if (!clicked) {
+				remoteService.remoteAction();
+				clicked = true;
+			} else {
+				int pid = remoteService.getPid();
+				Log.e("View", "getPid: " + pid);
+			}
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
