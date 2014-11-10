@@ -1,0 +1,39 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" >
+
+    <item
+        android:id="@+id/action1"
+        android:icon="@drawable/ic_launcher"
+        android:orderInCategory="100"
+        android:title="春江"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/action2"
+        android:orderInCategory="100"
+        android:title="潮水"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/action3"
+        android:orderInCategory="100"
+        android:title="连海平"
+        app:actionProviderClass="android.support.v7.widget.ShareActionProvider"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/action4"
+        android:icon="@drawable/ic_launcher"
+        android:orderInCategory="102"
+        android:title="海上"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/action5"
+        android:orderInCategory="101"
+        android:title="明月"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/action6"
+        android:orderInCategory="103"
+        android:title="共潮生"
+        app:showAsAction="never"/>
+
+</menu>
