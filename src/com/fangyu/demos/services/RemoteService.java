@@ -25,10 +25,6 @@ public class RemoteService extends Service {
 			return pid;
 		}
 
-		@Override
-		public IRemoteData getInstance() throws RemoteException {
-			return null;
-		}
 	};
 
 	public void onCreate() {
