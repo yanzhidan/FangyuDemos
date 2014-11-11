@@ -23,7 +23,6 @@ public class RemoteData implements Parcelable
 	
 	public static final Parcelable.Creator<RemoteData> CREATOR = new Creator<RemoteData>()
 	{
-		
 		@Override
 		public RemoteData[] newArray(int size)
 		{
