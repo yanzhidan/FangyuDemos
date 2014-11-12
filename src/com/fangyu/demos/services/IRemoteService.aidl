@@ -5,4 +5,5 @@ interface IRemoteService
 {
 	void remoteAction();
 	int getPid();
+	IRemoteData getRemoteData(in IRemoteData data);
 }

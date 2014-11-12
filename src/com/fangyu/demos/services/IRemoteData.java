@@ -3,7 +3,7 @@ package com.fangyu.demos.services;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class RemoteData implements Parcelable
+public class IRemoteData implements Parcelable
 {
 	public int id;
 	public String name;
@@ -21,18 +21,18 @@ public class RemoteData implements Parcelable
 		dest.writeString(name);
 	}
 	
-	public static final Parcelable.Creator<RemoteData> CREATOR = new Creator<RemoteData>()
+	public static final Parcelable.Creator<IRemoteData> CREATOR = new Creator<IRemoteData>()
 	{
 		@Override
-		public RemoteData[] newArray(int size)
+		public IRemoteData[] newArray(int size)
 		{
-			return new RemoteData[size];
+			return new IRemoteData[size];
 		}
 		
 		@Override
-		public RemoteData createFromParcel(Parcel source)
+		public IRemoteData createFromParcel(Parcel source)
 		{
-			RemoteData data = new RemoteData();
+			IRemoteData data = new IRemoteData();
 			data.id = source.readInt();
 			data.name = source.readString();
 			return data;

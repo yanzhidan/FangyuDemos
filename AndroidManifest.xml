@@ -38,18 +38,25 @@
             </intent-filter>
         </activity>
         <activity android:name="com.fangyu.demos.services.MessengerClient" >
+<!--             <intent-filter> -->
+<!--                 <action android:name="android.intent.action.MAIN" /> -->
+
+<!--                 <category android:name="android.intent.category.LAUNCHER" /> -->
+<!--             </intent-filter> -->
         </activity>
         <activity android:name="com.fangyu.demos.services.RemoteClient" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+            <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+
+            <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
         <service
             android:name="com.fangyu.demos.services.RemoteService"
-            android:process=":remote" />
+            android:process=":remote"/>
         <service
             android:name="com.fangyu.demos.services.MessengerService"
             android:process=":messenger" >

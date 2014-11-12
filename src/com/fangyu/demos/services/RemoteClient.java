@@ -44,7 +44,8 @@ public class RemoteClient extends Activity {
 	public void remoteAction(View view) {
 		try {
 			if (!clicked) {
-				remoteService.remoteAction();
+				IRemoteData data = remoteService.getRemoteData(new IRemoteData());
+				Log.e("View", "remoteData: " + data.name);
 				clicked = true;
 			} else {
 				int pid = remoteService.getPid();

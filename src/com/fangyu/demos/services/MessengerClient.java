@@ -64,6 +64,7 @@ public class MessengerClient extends Activity {
 	public void remoteAction(View view) {
 		Message message = new Message();
 		message.replyTo = acMessenger;
+//		message.obj = new IRemoteData();
 		message.what = 1;
 		try {
 			messenger.send(message);
@@ -73,7 +74,7 @@ public class MessengerClient extends Activity {
 	}
 
 	private void clientPrint() {
-		Log.e("View", findViewById(R.id.button) + " this is from client " + pid);
+		Log.e("View", " this is from client " + pid);
 	}
 
 	@Override

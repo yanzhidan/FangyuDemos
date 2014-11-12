@@ -25,6 +25,12 @@ public class RemoteService extends Service {
 			return pid;
 		}
 
+		@Override
+		public IRemoteData getRemoteData(IRemoteData data) throws RemoteException {
+			data.name = "我来自Service";
+			return data;
+		}
+
 	};
 
 	public void onCreate() {
