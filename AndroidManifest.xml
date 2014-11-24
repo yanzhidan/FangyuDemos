@@ -27,18 +27,26 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+        <activity android:name="com.fangyu.demos.FangyuDemos" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name="com.fangyu.demos.MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/label_actionbar" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="com.fangyu.demos.SAMPLE_CODE" />
+            </intent-filter>
         </activity>
         <activity
             android:name="com.fangyu.demos.SecondActivity"
             android:uiOptions="splitActionBarWhenNarrow" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-
                 <category android:name="android.intent.category.DEFAULT" />
-
                 <data android:scheme="download_test" />
             </intent-filter>
         </activity>
@@ -47,24 +55,23 @@
             android:uiOptions="splitActionBarWhenNarrow" >
             <intent-filter>
                 <action android:name="nima" />
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="com.fangyu.demos.services.MessengerClient" >
-
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
-        </activity>
-        <activity android:name="com.fangyu.demos.services.RemoteClient" >
+        <activity
+            android:name="com.fangyu.demos.services.MessengerClient"
+            android:label="@string/label_messengerService" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="com.fangyu.demos.SAMPLE_CODE" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.fangyu.demos.services.RemoteClient"
+            android:label="@string/label_remoteService" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="com.fangyu.demos.SAMPLE_CODE" />
             </intent-filter>
         </activity>
 

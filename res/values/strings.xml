@@ -4,5 +4,10 @@
     <string name="app_name">FangyuDemos</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <!-- label start -->
+    <string name="label_actionbar">actionbar</string>
+    <string name="label_messengerService">services/Messenger</string>
+    <string name="label_remoteService">services/AIDL</string>
+    <!-- label end -->
 
 </resources>
