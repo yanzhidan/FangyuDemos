@@ -16,7 +16,6 @@ import com.fangyu.demos.R;
 
 public class RemoteClient extends Activity {
 	IRemoteService remoteService;
-	boolean clicked = false;
 
 	ServiceConnection serviceConnection = new ServiceConnection() {
 
@@ -43,6 +42,7 @@ public class RemoteClient extends Activity {
 		bindService(intent, serviceConnection, BIND_AUTO_CREATE);
 	}
 
+	boolean clicked = false;
 	public void remoteAction(View view) {
 		try {
 			if (!clicked) {
