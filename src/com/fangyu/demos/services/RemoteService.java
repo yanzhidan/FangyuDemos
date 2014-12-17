@@ -1,5 +1,8 @@
 package com.fangyu.demos.services;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
@@ -16,6 +19,15 @@ import android.widget.Toast;
  */
 public class RemoteService extends Service {
 	private int pid;
+	private int value;
+	private Timer timer;
+	private TimerTask task = new TimerTask() {
+		@Override
+		public void run() {
+			broadCast();
+		}
+	};
+
 	private final RemoteCallbackList<IRemoteServiceCallback> mCallbacks = new RemoteCallbackList<IRemoteServiceCallback>();
 
 	IRemoteService.Stub binder = new IRemoteService.Stub() {
@@ -43,7 +55,7 @@ public class RemoteService extends Service {
 
 		@Override
 		public void unregisterCallback(IRemoteServiceCallback callback) throws RemoteException {
-			if(callback != null)
+			if (callback != null)
 				mCallbacks.unregister(callback);
 		}
 
@@ -51,6 +63,8 @@ public class RemoteService extends Service {
 
 	public void onCreate() {
 		pid = Process.myPid();
+		timer = new Timer();
+		timer.schedule(task, 2000, 3000);
 	}
 
 	@Override
@@ -58,13 +72,28 @@ public class RemoteService extends Service {
 		return binder;
 	}
 
+	private void broadCast() {
+		value++;
+		int num = mCallbacks.beginBroadcast();
+		for (int i = 0; i < num; i++) {
+			try {
+				mCallbacks.getBroadcastItem(i).valueChanged(value);
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
+		}
+		mCallbacks.finishBroadcast();
+	}
+
 	@Override
 	public void onTaskRemoved(Intent rootIntent) {
 		Toast.makeText(this, "Task removed: " + rootIntent, Toast.LENGTH_LONG).show();
 	}
-	
+
 	@Override
 	public void onDestroy() {
+		task.cancel();
+		timer.cancel();
 		mCallbacks.kill();
 	}
 }

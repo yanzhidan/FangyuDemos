@@ -31,6 +31,15 @@ public class RemoteClient extends Activity {
 		}
 	};
 
+	IRemoteServiceCallback callback = new IRemoteServiceCallback.Stub() {
+
+		@Override
+		public void valueChanged(int value) throws RemoteException {
+			Log.e("View", "RemoteClient * value: " + value);
+		}
+
+	};
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -43,20 +52,30 @@ public class RemoteClient extends Activity {
 	}
 
 	boolean clicked = false;
+
 	public void remoteAction(View view) {
 		try {
 			if (!clicked) {
-				IRemoteData data = remoteService.getRemoteData(new IRemoteData());
-				Log.e("View", "remoteData: " + data.name);
+				remoteService.registerCallback(callback);
 				clicked = true;
 			} else {
-				int pid = remoteService.getPid();
-				Log.e("View", "getPid: " + pid);
+				IRemoteData data = remoteService.getRemoteData(new IRemoteData());
+				Log.e("View", "remoteData: " + data.name);
 			}
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
 	}
 
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		try {
+			remoteService.unregisterCallback(callback);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		unbindService(serviceConnection);
+	}
 
 }
