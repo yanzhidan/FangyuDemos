@@ -38,6 +38,11 @@ public class RemoteClient extends Activity {
 			Log.e("View", "RemoteClient * value: " + value);
 		}
 
+		@Override
+		public void doAnything() throws RemoteException {
+			
+		}
+
 	};
 
 	@Override
