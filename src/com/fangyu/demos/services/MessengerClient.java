@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.fangyu.demos.R;
+import com.fangyu.demos.common.CommonUtils;
 
 /**
  * 
@@ -52,6 +53,7 @@ public class MessengerClient extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		CommonUtils.setImmerseTheme(this, R.color.actionbar_bg);
 		setContentView(R.layout.activity_client);
 		Button button = (Button) findViewById(R.id.button);
 		button.setText("messengerSend");

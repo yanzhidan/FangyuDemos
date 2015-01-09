@@ -10,7 +10,11 @@
 
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
-        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+         <item name="android:actionBarStyle" >@style/FYActionBarStyle</item>  
     </style>
+      
+    <style name="FYActionBarStyle" parent="android:Widget.ActionBar" >  
+        <item name="android:background">@color/actionbar_bg</item>  
+    </style> 
 
 </resources>

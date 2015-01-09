@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="id_test" type="id"></item>
+    <color name="actionbar_bg">#a0e0e0</color>
 </resources>

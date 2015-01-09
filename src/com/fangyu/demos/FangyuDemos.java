@@ -24,7 +24,6 @@ public class FangyuDemos extends ListActivity {
 		super.onCreate(savedInstanceState);
 		Intent intent = getIntent();
 		String path = intent.getStringExtra("com.fangyu.demos.Path");
-
 		if (path == null) {
 			path = "";
 		}
