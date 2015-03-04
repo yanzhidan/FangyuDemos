@@ -1,6 +1,4 @@
-package com.fangyu.demos;
-
-import com.fangyu.demos.R;
+package com.fangyu.demos.actionbar;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -10,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.fangyu.demos.R;
 
 public class PlaceholderFragment extends Fragment {
 

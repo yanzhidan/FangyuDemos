@@ -1,15 +1,16 @@
 package com.fangyu.demos;
 
-import com.fangyu.demos.R;
-
 import android.app.Activity;
 import android.os.Bundle;
 
-public class TestActivity extends Activity{
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_test);
-	}
+public class TestActivity extends Activity
+{
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+	// TODO Auto-generated method stub
+	super.onCreate(savedInstanceState);
+	setContentView(R.layout.activity_test);
+	
+    }
 }
