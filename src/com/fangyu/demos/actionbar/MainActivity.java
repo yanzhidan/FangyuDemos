@@ -186,12 +186,12 @@ public class MainActivity extends ActionBarActivity implements TabListener
 	// ft1.addToBackStack(null);
 	ft1.commit();
     }
-    
+
     @Override
     protected void onDestroy()
     {
-        super.onDestroy();
-        unregisterReceiver(receiver);
+	super.onDestroy();
+	unregisterReceiver(receiver);
     }
 
     private final SearchView.OnQueryTextListener mOnQueryTextListener = new SearchView.OnQueryTextListener()

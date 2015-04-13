@@ -24,65 +24,78 @@ import com.fangyu.demos.common.CommonUtils;
  * @description Test Messenger client
  * 
  */
-public class MessengerClient extends Activity {
-	Messenger messenger;
-	Messenger acMessenger = new Messenger(new OutHandler());
-	private int pid;
+public class MessengerClient extends Activity
+{
+    Messenger messenger;
+    Messenger acMessenger = new Messenger(new OutHandler());
+    private int pid;
 
-	class OutHandler extends Handler {
-		@Override
-		public void handleMessage(Message msg) {
-			clientPrint();
-		}
-	}
-
-	ServiceConnection serviceConnection = new ServiceConnection() {
-		@Override
-		public void onServiceDisconnected(ComponentName name) {
-			Log.e("View", "*onServiceDisconnected");
-		}
-
-		@Override
-		public void onServiceConnected(ComponentName name, IBinder service) {
-			Log.e("View", "*onServiceConnected");
-			Toast.makeText(getApplicationContext(), "onServiceConnected", 0).show();
-			messenger = new Messenger(service);
-		}
-	};
-
+    class OutHandler extends Handler
+    {
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		CommonUtils.setImmerseTheme(this, R.color.actionbar_bg);
-		setContentView(R.layout.activity_client);
-		Button button = (Button) findViewById(R.id.button);
-		button.setText("messengerSend");
-		Intent intent = new Intent(this, MessengerService.class);
-		bindService(intent, serviceConnection, BIND_AUTO_CREATE);
-		pid = Process.myPid();
-		Log.e("View", "Activity****" + getPackageName() + " pid: " + pid);
+	public void handleMessage(Message msg)
+	{
+	    clientPrint();
 	}
+    }
 
-	public void remoteAction(View view) {
-		Message message = new Message();
-		message.replyTo = acMessenger;
-//		message.obj = new IRemoteData();
-		message.what = 1;
-		try {
-			messenger.send(message);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-	}
-
-	private void clientPrint() {
-		Log.e("View", " this is from client " + pid);
+    ServiceConnection serviceConnection = new ServiceConnection()
+    {
+	@Override
+	public void onServiceDisconnected(ComponentName name)
+	{
+	    Log.e("View", "*onServiceDisconnected");
 	}
 
 	@Override
-	protected void onDestroy() {
-		super.onDestroy();
-		Log.e("View", "clientDestroy" + pid);
-		unbindService(serviceConnection);
+	public void onServiceConnected(ComponentName name, IBinder service)
+	{
+	    Log.e("View", "*onServiceConnected");
+	    Toast.makeText(getApplicationContext(), "onServiceConnected", 0).show();
+	    messenger = new Messenger(service);
 	}
+    };
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+	super.onCreate(savedInstanceState);
+	CommonUtils.setImmerseTheme(this, R.color.actionbar_bg);
+	setContentView(R.layout.activity_client);
+	Button button = (Button) findViewById(R.id.button);
+	button.setText("messengerSend");
+	Intent intent = new Intent(this, MessengerService.class);
+	bindService(intent, serviceConnection, BIND_AUTO_CREATE);
+	pid = Process.myPid();
+	Log.e("View", "Activity****" + getPackageName() + " pid: " + pid);
+    }
+
+    public void remoteAction(View view)
+    {
+	Message message = new Message();
+	message.replyTo = acMessenger;
+	// message.obj = new IRemoteData();
+	message.what = 1;
+	try
+	{
+	    messenger.send(message);
+	}
+	catch (RemoteException e)
+	{
+	    e.printStackTrace();
+	}
+    }
+
+    private void clientPrint()
+    {
+	Log.e("View", " this is from client " + pid);
+    }
+
+    @Override
+    protected void onDestroy()
+    {
+	super.onDestroy();
+	Log.e("View", "clientDestroy" + pid);
+	unbindService(serviceConnection);
+    }
 }

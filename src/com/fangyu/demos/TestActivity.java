@@ -11,6 +11,6 @@ public class TestActivity extends Activity
 	// TODO Auto-generated method stub
 	super.onCreate(savedInstanceState);
 	setContentView(R.layout.activity_test);
-	
+
     }
 }

@@ -5,37 +5,37 @@ import android.os.Parcelable;
 
 public class IRemoteData implements Parcelable
 {
-	public int id;
-	public String name;
+    public int id;
+    public String name;
 
+    @Override
+    public int describeContents()
+    {
+	return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags)
+    {
+	dest.writeInt(id);
+	dest.writeString(name);
+    }
+
+    public static final Parcelable.Creator<IRemoteData> CREATOR = new Creator<IRemoteData>()
+    {
 	@Override
-	public int describeContents()
+	public IRemoteData[] newArray(int size)
 	{
-		return 0;
+	    return new IRemoteData[size];
 	}
 
 	@Override
-	public void writeToParcel(Parcel dest, int flags)
+	public IRemoteData createFromParcel(Parcel source)
 	{
-		dest.writeInt(id);
-		dest.writeString(name);
+	    IRemoteData data = new IRemoteData();
+	    data.id = source.readInt();
+	    data.name = source.readString();
+	    return data;
 	}
-	
-	public static final Parcelable.Creator<IRemoteData> CREATOR = new Creator<IRemoteData>()
-	{
-		@Override
-		public IRemoteData[] newArray(int size)
-		{
-			return new IRemoteData[size];
-		}
-		
-		@Override
-		public IRemoteData createFromParcel(Parcel source)
-		{
-			IRemoteData data = new IRemoteData();
-			data.id = source.readInt();
-			data.name = source.readString();
-			return data;
-		}
-	};
+    };
 }

@@ -3,6 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    <Button android:layout_width="80dip" android:layout_height="60dip" android:text="魔力视频"/>
+
+    <Button
+        android:layout_width="80dip"
+        android:layout_height="60dip"
+        android:text="魔力视频" />
 
 </LinearLayout>
